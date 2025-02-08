@@ -1,5 +1,7 @@
 # Level01
 
+## Walkthrough
+
 Using the same commands from the previous level, we don't find any clue on how to find the current flag.
 
 After browsing the system directories for a while, a filename caught our attention: `/etc/passwd`.  

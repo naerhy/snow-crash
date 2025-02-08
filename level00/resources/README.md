@@ -1,5 +1,7 @@
 # Level00
 
+## Walkthrough
+
 Once connected, our first instinct is to check the content of the home directory for the current user.
 
 ```bash

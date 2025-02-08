@@ -79,7 +79,7 @@ int main(void) {
 	return 1;
 }
 ```
-## Ressources
+## Resources
 
 - [Exploit system() call in C](https://stackoverflow.com/questions/39939853/exploit-system-call-in-c)
 - [How to exploit system() call in C](https://www.go4expert.com/articles/exploit-c-t24920)

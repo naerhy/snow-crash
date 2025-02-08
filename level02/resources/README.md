@@ -1,5 +1,7 @@
 # Level02
 
+## Walkthrough
+
 By listing the files in the home directory, we find a `.pcap` file.
 
 ```bash
@@ -60,7 +62,7 @@ To find the correct password, we manually translate the raw byte values to ASCII
 
 The `7f [DEL]` character is a delete/backspace control character, meaning some characters were removed when the password was typed.
 
-By removing these **DEL** characters, we reconstruct the actual password for `flag02`: ft_waNDReL0L.
+By removing these DEL characters, we reconstruct the actual password for `flag02`: ft_waNDReL0L.
 
 ```bash
 level01@SnowCrash:~$ su flag02
@@ -69,3 +71,7 @@ Don't forget to launch getflag !
 flag01@SnowCrash:~$ getflag
 Check flag.Here is your token : kooda2puivaav1idi4f57q8iq
 ```
+
+## Resources
+
+[How to Use Wireshark: Comprehensive Tutorial + Tips](https://www.varonis.com/blog/how-to-use-wireshark#what-is-wireshark)
