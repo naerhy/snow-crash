@@ -1,4 +1,4 @@
-To find the first flag, we use the find command to search for a file owned by flag00 that we have permission to read:
+To find the first flag, we use the **find** command to search for a file owned by flag00 that we have permission to read:
 
 ```bash
 level00@SnowCrash:~$ find / -type f -user flag00 2>dev/null
