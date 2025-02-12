@@ -64,4 +64,4 @@ Check flag.Here is your token : fiumuikeil55xe9cu4dood66h
 
 ## Resources
 
-[Command substitution](https://www.gnu.org/software/bash/manual/html_node/Command-Substitution.html)
+- [Command substitution](https://www.gnu.org/software/bash/manual/html_node/Command-Substitution.html)

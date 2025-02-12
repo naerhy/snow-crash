@@ -17,7 +17,7 @@ d--x--x--x 1 root    users    340 Aug 30  2015 ..
 
 A [pcap](https://en.wikipedia.org/wiki/Pcap) file is an API for capturing network traffic. It can be analyzed with tools like [Wireshark](https://www.wireshark.org) or [tshark](https://tshark.dev/).
 
-To analyze the file, we transfer it to our local machine using [SCP](https://en.wikipedia.org/wiki/Secure_copy_protocol).
+To analyze the file, we transfer it to our local machine using SCP.
 
 ```bash
 host:~$ scp -P 4242 level02@localhost:level02.pcap level02.pcap
@@ -74,4 +74,4 @@ Check flag.Here is your token : kooda2puivaav1idi4f57q8iq
 
 ## Resources
 
-[How to Use Wireshark: Comprehensive Tutorial + Tips](https://www.varonis.com/blog/how-to-use-wireshark#what-is-wireshark)
+- [How to Use Wireshark: Comprehensive Tutorial + Tips](https://www.varonis.com/blog/how-to-use-wireshark#what-is-wireshark)

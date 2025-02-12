@@ -85,4 +85,4 @@ Check flag.Here is your token : viuaaale9huek52boumoomioc
 
 ## Resources
 
-[What does a + mean at the end of the permissions from ls -l?](https://serverfault.com/questions/227852/what-does-a-mean-at-the-end-of-the-permissions-from-ls-l)
+- [What does a + mean at the end of the permissions from ls -l?](https://serverfault.com/questions/227852/what-does-a-mean-at-the-end-of-the-permissions-from-ls-l)

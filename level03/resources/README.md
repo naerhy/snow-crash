@@ -19,7 +19,7 @@ level03: setuid setgid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV),
 
 The `s` on `level03` permissions indicates the [setuid bit](https://en.wikipedia.org/wiki/Setuid). This means that the file will run with the privileges of its owner instead of the user executing it. In our case, the owner is `flag03`.
 
-To analyze the file, we transfer it to our local machine using [SCP](https://en.wikipedia.org/wiki/Secure_copy_protocol).
+To analyze the file, we transfer it to our local machine using SCP.
 
 ```bash
 host:~$ scp -P 4242 level02@localhost:level03 level03
