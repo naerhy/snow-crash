@@ -21,14 +21,9 @@ To analyze the binary file, we transfer it to our local machine using **scp**:
 level06@SnowCrash:~$ scp -P 4242 level06@127.0.0.1:/home/user/level06/level06 ./
 ```
 
-We decompile the binary using [dogbolt.org](http://dogbolt.org) : 
+We decompile the binary using [dogbolt.org](http://dogbolt.org) 
 
-
-
-
-
-
-
+The script calls **getegid()** and **geteuid()** to retrieve the effective group ID and user ID, and then uses **setresgid()** and **setresuid()** to set them. In our case, these correspond to the **flag06** IDs.
 
 ### **Analyzing level06.php**
 
@@ -107,18 +102,6 @@ Detailed explanation of **preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a)** :
 
 **Exemple:**
 
-| Input | Hello [x Hello World] !!!! |
-| --- | --- |
-| Group 1 | [x Hello World] |
-| Group 2 | Hello World |
-
-| Regex | Meaning |
-| --- | --- |
-| y(   ) | Function call to y() |
-| \\2 | Backreference to Group 2 (\2) captured above. In PHP, inside double quotes, \\ is needed to represent a single backslash. |
-| \” | Those backslash escape “ so PHP treats it as a literal quote inside the string. |
-| **y(\"\\2\")** | Gets executed as a PHP code because of /e above |
-
 **The problem with /e**
 
 /e is a modifier deprecated for security reasons. It is used to evaluate the replacement string as PHP code. 
@@ -145,9 +128,3 @@ PHP Notice:  Use of undefined constant getflag - assumed 'getflag' in /home/user
 Check flag.Here is your token : **wiok45aaoguiboiki2tuin6ub**
 PHP Notice:  Undefined variable: Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub in /home/user/level06/level06.php(4) : regexp code on line 1
 ```
-
-### Ressources
-
-- https://dogbolt.org/?id=3676f32d-440a-403f-b048-6336a9e88a73#Ghidra=171
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Cheatsheet
-- https://stackoverflow.com/questions/16986331/can-someone-explain-the-e-regex-modifier
