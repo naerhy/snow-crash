@@ -20,7 +20,7 @@ level09@SnowCrash:~$ file token
 token: data
 ```
 
-There are 2 files: an executable `level09` with the setuid bit flag, and a `token` text file, both owned by `flag09` but readable.
+There are 2 files: an executable `level09` with the **setuid** bit flag, and a `token` text file, both owned by **flag09** but readable.
 
 ```bash
 level09@SnowCrash:~$ ./level09 
@@ -31,10 +31,10 @@ level09@SnowCrash:~$ cat token
 f4kmm6p|=�p�n��DB�Du{��
 ```
 
-From our first tests, it looks like the executable is accepting 1 argument and generate a string from it, maybe a token?  
+From our first tests, it looks like the executable is accepting 1 argument and generate a string from it, perhaps a token.  
 And we have to understand why the content of `token` contains some unprintable characters.
 
-Let's import the executable with SCP and analyze it with dogbolt.
+Let's import the executable with **SCP** and analyze it with **dogbolt**.
 
 ```bash
 host:~$ scp -P 4242 level09@localhost:level09 level09
@@ -42,8 +42,8 @@ host:~$ scp -P 4242 level09@localhost:level09 level09
 
 [Link to the decompiled output](https://dogbolt.org/?id=173c6b90-e0d8-4886-9fde-c92330912500)
 
-By checking the `main()` function, we can figure out that the program:
-- prevents the executable to be called with a debugger like GDB, or to override a function with LD_PRELOAD environment variable
+We check the `main()` function and figure out that the program:
+- prevents the executable to be called with a debugger like **GDB**, or to override a function with `LD_PRELOAD` environment variable
 - accepts only 1 argument
 - loops over the string passed as argument and prints on stdout the current character incremented by the current value of the loop counter variable
 - prints a final newline character on stdout before exiting
@@ -120,7 +120,7 @@ f5mpq;v�E��{�{��TS�W�����
 ```
 
 This doesn't seem to be the solution, and it can't be that simple.  
-What's more likely is that the content of `token` is the result of the `flag09`'s password passed to the executable.  
+What's more likely is that the content of `token` is the result of the **flag09**'s password passed to the executable.  
 The solution: create a small program to revert the token.
 
 ```c

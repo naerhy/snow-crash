@@ -1,4 +1,8 @@
-Listing the files in the directory, we cannot find any binary file belonging to flag14. Inspired by the previous level, we try to modify the getflag function uid using gdb. 
+# Level14
+
+## Walkthrough
+
+Listing the files in the directory, we cannot find any binary file belonging to **flag14**. Inspired by the previous level, we try to modify the `getflag` command uid using **GDB**. 
 
 ```bash
 **level14@SnowCrash:~$** gdb getflag
@@ -104,6 +108,6 @@ Check flag.Here is your token : 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
 [Inferior 1 (process 3356) exited normally]
 ```
 
-### Ressources
+## Resources
 
-- About bypassing ptrace: [https://www.notion.so/snow-crash-17dd775f41e68097b62ac050b3473b11](https://www.notion.so/snow-crash-17dd775f41e68097b62ac050b3473b11?pvs=21)
+- [About bypassing ptrace](https://www.notion.so/snow-crash-17dd775f41e68097b62ac050b3473b11?pvs=21)

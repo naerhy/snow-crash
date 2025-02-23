@@ -83,7 +83,7 @@ char *__cdecl ft_des(char *s)
 ```
 
 The executable:
-- checks if the current user id is equal to `4242`
+- checks if the current user id is equal to **4242**
 - calls a custom `ft_des()` function which seems to decrypt the value `boe]!ai0FB@.:|L6l@A?>qJ}I`
 
 Our first attempt in order to get the flag is to copy/paste the `ft_des()` function, and run it on our system with the same value.
@@ -95,8 +95,8 @@ Segmentation fault (core dumped)
 
 The `level13` executable uses the number `134514368` to dereference a pointer. There might be a reason this is only working on the VM.
 
-The only remaining instruction which looks exploitable is the `getuid()` call. After some researches, we find that we can alter the return value of a function with GDB.  
-We try to replace the return value from `getuid()` with `4242`.
+The only remaining instruction which looks exploitable is the `getuid()` call. After some researches, we find that we can alter the return value of a function with **GDB**.  
+We try to replace the return value from `getuid()` with **4242**.
 
 ```bash
 level13@SnowCrash:~$ gdb level13 

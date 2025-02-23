@@ -2,7 +2,7 @@
 
 ## Walkthrough
 
-First, let's check if some files exist in the home directory.
+We check if some files exist in the home directory.
 
 ```bash
 level05@SnowCrash:~$ ls -la
@@ -15,7 +15,8 @@ d--x--x--x  1 root    users    340 Aug 30  2015 ..
 ```
 
 Nothing.  
-Let's try to find files owned by the `flag05` user.
+
+We try to find files owned by the **flag05** user.
 
 ```bash
 level05@SnowCrash:~$ find / -type f -user flag05 2>/dev/null
@@ -34,15 +35,15 @@ cat: /rofs/usr/sbin/openarenaserver: Permission denied
 
 We find a script `/usr/sbin/openarenaserver` which runs any other scripts found in directory `/opt/openarenaserver`, then deletes them after execution.
 
-Let's check if we have the permissions to create a file in this directory.
+We check if we have the permissions to create a file in this directory.
 
 ```bash
 level05@SnowCrash:~$ ls -la /opt | grep openarenaserver
 drwxrwxr-x+ 2 root root  40 Feb  8 20:41 openarenaserver
 ```
 
-The directory is owned by user `root` and group `root`, and others can only read or execute...  
-But there is more: the trailing `+` character in the permissions means that the file has extended permissions ([ACL](https://en.wikipedia.org/wiki/Access-control_list)).
+The directory is owned by user **root** and group **root**, and others can only read or execute.  
+The trailing `+` character in the permissions means that the file has extended permissions: **ACL**.
 
 
 ```bash
@@ -65,7 +66,7 @@ default:mask::rwx
 default:other::r-x
 ```
 
-By reading the output of the `getfacl` command, we notice that the user `level05` has read, write and execute permissions on this directory.  
+We read the output of the `getfacl` command and notice that the user **level05** has read, write and execute permissions on this directory.  
 To obtain the flag, we simply have to create a shell script that will store the result of the `getflag` command in a file.
 
 ```bash
@@ -85,4 +86,5 @@ Check flag.Here is your token : viuaaale9huek52boumoomioc
 
 ## Resources
 
+- [ACL](https://en.wikipedia.org/wiki/Access-control_list)
 - [What does a + mean at the end of the permissions from ls -l?](https://serverfault.com/questions/227852/what-does-a-mean-at-the-end-of-the-permissions-from-ls-l)

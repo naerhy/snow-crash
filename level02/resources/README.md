@@ -2,7 +2,7 @@
 
 ## Walkthrough
 
-By listing the files in the home directory, we find a `.pcap` file.
+We list the files in the current home directory.
 
 ```bash
 level02@SnowCrash:~$ ls -la
@@ -15,19 +15,19 @@ d--x--x--x 1 root    users    340 Aug 30  2015 ..
 ----r--r-- 1 flag02  level02 8302 Aug 30  2015 level02.pcap
 ```
 
-A [pcap](https://en.wikipedia.org/wiki/Pcap) file is an API for capturing network traffic. It can be analyzed with tools like [Wireshark](https://www.wireshark.org) or [tshark](https://tshark.dev/).
+A **pcap** file is used to store captured network traffic data. It can be analyzed with tools like **Wireshark** or **tshark**.
 
-To analyze the file, we transfer it to our local machine using SCP.
+We transfer it to our local machine using **SCP**.
 
 ```bash
 host:~$ scp -P 4242 level02@localhost:level02.pcap level02.pcap
 ```
 
-After opening Wireshark, navigate to: `analyze → follow → TCP stream`.
+After opening **Wireshark**, we navigate to: `analyze → follow → TCP stream`.
 
 ![Wireshark output](wireshark.png)
 
-Wireshark provides multiple ways to interpret captured data, including ASCII, UTF-8, and raw bytes. Initially the password extracted from ASCII and UTF-8 appeared incorrect due to extra or corrupted characters.
+**Wireshark** provides multiple ways to interpret captured data, including ASCII, UTF-8, and raw bytes. Initially the password extracted from ASCII and UTF-8 appeared incorrect due to extra or corrupted characters.
 
 ```
 ASCII: ft_wandr...NDRel.L0L
@@ -60,9 +60,9 @@ To find the correct password, we manually translate the raw byte values to ASCII
 0d [end of transmission] 
 ```
 
-The `7f [DEL]` character is a delete/backspace control character, meaning some characters were removed when the password was typed.
+The `7f [DEL]` character is a **delete/backspace control character**, meaning some characters were removed when the password was typed.
 
-By removing these DEL characters, we reconstruct the actual password for `flag02`: ft_waNDReL0L.
+We remove these DEL characters and reconstruct the actual password for **flag02**: `ft_waNDReL0L`.
 
 ```bash
 level01@SnowCrash:~$ su flag02
@@ -74,4 +74,6 @@ Check flag.Here is your token : kooda2puivaav1idi4f57q8iq
 
 ## Resources
 
+- [pcap](https://en.wikipedia.org/wiki/Pcap)
+- [Wireshark](https://www.wireshark.org)
 - [How to Use Wireshark: Comprehensive Tutorial + Tips](https://www.varonis.com/blog/how-to-use-wireshark#what-is-wireshark)

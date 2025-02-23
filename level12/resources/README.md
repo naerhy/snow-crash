@@ -17,7 +17,7 @@ level12@SnowCrash:~$ file level12.pl
 level12.pl: setuid setgid a perl script, ASCII text executable
 ```
 
-`level12` is a Perl script owned by `flag12` and has the setuid flag.
+`level12` is a **Perl** script owned by **flag12** and has the **setuid** flag.
 
 We display the content of the script.
 
@@ -53,7 +53,7 @@ sub n {
 n(t(param("x"), param("y")));
 ```
 
-From the first 2 lines, it seems the script is probably a HTTP server running on port 4646.
+From the first 2 lines, it seems the script is probably a HTTP server running on port **4646**.
 
 ```bash
 level12@SnowCrash:~$ netstat -tulpn | grep LISTEN
@@ -115,7 +115,7 @@ cat: /tmp/token: No such file or directory
 We analyze the code to check if we missed something. Indeed, before calling `egrep` the script replaces all lowercase characters by an uppercase, and trims all space characters at the start of the string.  
 This means that our argument `%22%24%28getflag%29%20%3E%20%2Ftmp%2Ftoken%22` is transformed to `%22%24%28GETFLAG%29%20%3E%20%2FTMP%2FTOKEN%22`.
 
-We cannot store the command inside an environment variable because it will only belong to user `level13`.  
+We cannot store the command inside an environment variable because it will only belong to user **level13**.  
 Using a file to store our command is another option, but because of the uppercase replacement, we cannot create one in `/tmp` and pass it to `x` as it will be looking for `/TMP/...`.  
 
 We know that a special character `*` exists in shell to match any character.

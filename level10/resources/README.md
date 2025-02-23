@@ -20,7 +20,7 @@ level10@SnowCrash:~$ file token
 token: regular file, no read permission
 ```
 
-`level10` is owned by `flag10` and has the setuid flag.
+`level10` is owned by **flag10** and has the **setuid** flag.
 
 We run `level10`.
 
@@ -115,23 +115,23 @@ We read the manpage of `access()` and notice this line:
 The check is done using the calling process's real UID and GID, rather than the effective IDs as is done when actually attempting an operation (e.g., open(2)) on the file.
 ```
 
-With this information, our first idea in order to break the executable is to pass the path to an empty file with the correct permissions for `level10` as first argument, and then create a symbolic link to the `token` file after the call to `access()`.  
+With this information, our first idea in order to break the executable is to pass the path to an empty file with the correct permissions for **level10** as first argument, and then create a symbolic link to the `token` file after the call to `access()`.  
 It seems to be a well-known exploit called `TOCTOU` (Time of Check to Time of Update), as explained in the manpage of `access()`:
 ```
 Warning: Using these calls to check if a user is authorized to, for example, open a file before actually doing so using open(2) creates a security hole, because the user might exploit the short time interval between checking and opening the file to manipulate it.
 ```
 
 Our first attempt is to:
-- create a listening TCP socket with `netcat`
-- run the executable with `gdb`
+- create a listening TCP socket with **netcat**
+- run the executable with **GDB**
 - set a breakpoint after `access()`
 - update the file
 - continue the execution.
 
 With this method, we are able to succesfully pass the first condition (`access()`), but not the second one (`open()`) due to a lack of permissions.  
-Unfortunately, `gdb` doesn't seem to work when an executable has a setuid flag.
+Unfortunately, **GDB** doesn't seem to work when an executable has a **setuid** flag.
 
-If we cannot use `gdb` and we cannot update the executable to make it sleep for some seconds, our sole solution is to brute force the level by running in a loop the executable and a custom script until the timing of their instructions match our desired output which is:
+If we cannot use **GDB** and we cannot update the executable to make it sleep for some seconds, our sole solution is to brute force the level by running in a loop the executable and a custom script until the timing of their instructions match our desired output which is:
 - creation of an empty file named `token` in `/tmp/level10`
 - execution of `access()` in `level10`
 - deletion of `token` and creation of symbolic link to `~/token`

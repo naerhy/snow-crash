@@ -57,9 +57,9 @@ end
 ```
 
 The script seems to:
-- start a socket listening on `localhost` port `5151`
+- start a socket listening on **localhost** port **5151**
 - accept connections and waits for a message
-- hash the received message with the `sha-1` algorithm and print a text depending of the result
+- hash the received message with the **sha-1** algorithm and print a text depending of the result
 
 We check every used lua functions in the script in order to check if one is exploitable. The `popen()` function executes a shell command in a separate process. It is calling the `echo` command in the current script, concatenated with our message.  
 Like previous levels, we may be able to exploit the script with a command substitution.

