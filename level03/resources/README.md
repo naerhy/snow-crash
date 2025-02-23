@@ -22,7 +22,7 @@ The `s` on `level03` permissions indicates the **setuid bit**. This means that t
 We transfer it to our local machine using **SCP**.
 
 ```bash
-host:~$ scp -P 4242 level02@localhost:level03 level03
+host:~$ scp -P 4242 level03ocalhost:level03 level03
 ```
 
 We decompile the binary using a decompiler explorer like **dogbolt**.

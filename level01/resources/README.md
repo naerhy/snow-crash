@@ -4,7 +4,7 @@
 
 We use the same commands from the previous level, but we don't find any exploitable files.
 
-We browse the system directories for a while until a filename catches our attention: `/etc/passwd`.
+We browse the system directories until a filename catches our attention: `/etc/passwd`.
 
 ```Traditionally, the /etc/passwd file is used to keep track of every registered user that has access to a system.
 The /etc/passwd file is a colon-separated file that contains the following information:
@@ -27,13 +27,14 @@ flag01:42hDRfypTqqnw:3001:3001::/home/flag/flag01:/bin/bash
 flag02:x:3002:3002::/home/flag/flag02:/bin/bash
 # [...]
 ```
+
 Unfortunately, the string isn't the current flag, but it still looks like a token that we may be able to crack, with a tool like **john**.
 
 We transfer the file to our local machine using **SCP** in order to analyze it, and pass it to the `john` executable.
 
 ```bash
-host:~$ scp -P 4242 level02@localhost:/etc/passwd passwd
-host:~$ john -show passwd
+host:~$ scp -P 4242 level01@localhost:/etc/passwd passwd
+host:~$ john --show passwd
 flag01:abcdefg:3001:3001::/home/flag/flag01:/bin/bash
 
 1 password hash cracked, 0 left
