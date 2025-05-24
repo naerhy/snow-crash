@@ -1,65 +1,40 @@
-# snow-crash
+# Snow Crash
 
-## About the project
+> This project is an introduction to computer security. Snow Crash will help you discover security in various sub-domains, with a developer-oriented approach. You will become familiar with several languages (ASM, Perl, Php, etc.), develop a certain logic to understand unknown programs, and become aware of problems related to simple programming errors.
 
-**snow-crash** is an introductory cybersecurity project from the **42Network** curriculum. It consists of **10 levels** and **5 bonus challenges**.
+## Description
 
-Each level is documented in its corresponding directory, with a detailed explanation of the approach and reasoning used to solve it.
+Snow Crash is the first project of the cybersecurity branch of 42 school. It serves as an introduction to some well-known system vulnerabilities, and mostly focuses on the Linux operating system, forcing us to learn more about it and understand how it can be potentially exploited.
 
-## Getting Started
+The main topics we have studied include:
+- Linux filesystem and commands
+- Users permissions
+- Shell and Perl scripting
+- C and PHP executables
 
-1. Create a virtual machine using the ISO file provided by 42. Ensure that the VM's network is set to **Host-Only Adapter**
-2. Find the IP address of your VM by running `ifconfig`
-3. Connect via SSH on port **4242**, replacing XX with the level you want to access and <VM_IP_ADDRESS> with your VM’s actual IP
-
-```bash
-ssh -p 4242 levelXX@<VM_IP_ADDRESS>
-```
+All the levels and bonuses of this project have been completed.
 
 ## Usage
 
-### Log in to levelXX using the known credentials:
+In order to start this project, you have to first download and install the provided ISO by 42.  
+Then you need to use a virtual machine with the ISO. If using **VirtualBox**, you must set the `Attached to` setting in the `Network` tab to `Host-only Adapter`.  
+Finally you can connect to the first level, using ssh. The ip is displayed on the home screen of the VM and the port is `4242`. The credentials for the first level are: `level00` for both username and password.
 
 ```bash
-ssh -p 4242 level00@<VM_IP_ADDRESS>
-#password: level00
-```
-### Find the password for the next level
-
-Each level requires you to discover a password that grants access to the corresponding flagXX, where XX is the current level number. Once you've obtained the password for flagXX, log in as follows:
-
-```bash
-su flagXX
+ssh level00@xxx.xxx.xxx.xxx -p 4242
 ```
 
-You may not be able to connect to a "flagXX" account - in this case, you will have to find an alternative method.
+Once you have found the password for the next level, switch to the corresponding `flag` user and run the `getflag` command in order to obtain the password required to log in as the next `level` user.
 
-### Retrieve the next password
-
-Once logged as flagXX, run the following command to obtain the token for the next level:
-```bash
-getflag
+```
+level00@SnowCrash:~$ su flag00
+Password:
+Don't forget to launch getflag!
+flag00@SnowCrash:~$ getflag
+Check flag.Here is your token: ?????????????????
+flag00@SnowCrash:~$ su level01
+Password:
+level01@SnowCrash:~$ _
 ```
 
-### Switch to the next level using the token as password
-
-```bash
-su levelXX+1
-```
-
-### Ressources
-
-#### Tools & Websites
-
-- [dCode](https://www.dcode.fr)
-- [GDB](https://en.wikipedia.org/wiki/GNU_Debugger)
-- [John the Ripper](https://www.openwall.com/john)
-- [Wireshark](https://www.wireshark.org)
-
-#### Languages
-
-- Bash
-- C
-- Lua
-- Perl
-- PHP
+Logging in as a `flag` user is not always required, sometimes you may find another solution in order to directly obtain the next `level` password.
